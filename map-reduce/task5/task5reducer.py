@@ -3,21 +3,29 @@
 
 import sys
 
-result = {}
+old_user = None
+queries = []
+urls = []
 
 for line in sys.stdin:
-    key, value = line.strip().split('\t')
-    H = {}
-    for element in value.split(','):
-        a,b = element.split(':')
-        H.update({a: b})
-
-    for k,v in H.items():
-        old_value = result.get((key,k))
-        if old_value is None:
-            result.update({(key, k): int(v)})
+    user_id, query, url = line.strip().split('\t')
+    if  old_user != user_id:
+        if old_user is not None:
+            print(f"{old_user}\t{queries}\t{urls}")
+        old_user = user_id
+        if query == '*':
+            queries = []
         else:
-            result.update({(key, k): int(v)+old_value})
+            queries = [query]
+        if url =='*':
+            urls = []
+        else:
+            urls = [url]
+    else:
+        if url !='*':
+            urls.append(url)
+        if query != '*':
+            queries.append(query)
 
-for key, value in result.items():
-    print(f"{key}\t{value}")
+if old_user is not None:
+    print(f"{old_user}\t{queries}\t{urls}")
