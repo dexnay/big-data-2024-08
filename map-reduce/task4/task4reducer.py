@@ -20,4 +20,4 @@ for line in sys.stdin:
             result.update({(key, k): int(v)+old_value})
 
 for key, value in result.items():
-    print(f"{key}\t{len(value)}")
+    print(f"{key}\t{value}")
