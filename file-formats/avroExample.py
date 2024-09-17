@@ -1,7 +1,7 @@
 import avro.schema
 
-from avro.datafile import DataFileWriter
-from avro.io import DatumWriter
+from avro.datafile import DataFileWriter, DataFileReader
+from avro.io import DatumWriter, DatumReader
 
 file_schema = avro.schema.parse(open("employee.avsc", 'r').read())
 print(file_schema)
@@ -18,3 +18,8 @@ employee = {
 writer = DataFileWriter(open("employee.avro", "wb"), DatumWriter(), file_schema)
 writer.append(employee)
 writer.close()
+
+reader = DataFileReader(open("employee.avro", "rb"), DatumReader())
+for user in reader:
+    print(user)
+
