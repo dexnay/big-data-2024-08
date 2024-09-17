@@ -7,5 +7,7 @@ def run_cmd(arg_list):
     s_return = proc.returncode
     return s_out, s_err, s_return
 
-run_cmd(['hdfs', 'dfs', '-mkdir', '/temp'])
-run_cmd(['hdfs', 'dfs', '-put', 'result.txt', '/temp'])
+#run_cmd(['/home/student/hadoop-2.10.2/bin/hdfs', 'dfs', '-mkdir', '/temp1'])
+#run_cmd(['/home/student/hadoop-2.10.2/bin/hdfs', 'dfs', '-put', 'result.txt', '/temp1'])
+(s_out, s_err, s_return) = run_cmd(['/home/student/hadoop-2.10.2/bin/hdfs', 'dfs', '-cat', '/temp1/result.txt'])
+print(f"{s_out} {s_err} {s_return}")
