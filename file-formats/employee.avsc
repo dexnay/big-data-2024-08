@@ -3,6 +3,11 @@
     "name": "Employee",
     "namespace": "avro.sample",
     "fields": [
-
+        {"name": "employee_id", "type": "int"},
+        {"name": "employee_name", "type": "string"},
+        {"name": "joining_date", "type": "int", "logicalType": "date"},
+        {"name": "salary", "type": "float", "logicalType": "decimal", "precision": 10, "scalar": 2},
+        {"name": "address", "type": "string"},
+        {"name": "update_date_time", "type": "long", "logicalType": "datetime"}
     ]
 }
